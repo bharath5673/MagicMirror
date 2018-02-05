@@ -24,7 +24,6 @@ Module.register("currentweather",{
 		showWindDirectionAsArrow: false,
 		useBeaufort: true,
 		lang: config.language,
-		decimalSymbol: ".",
 		showHumidity: false,
 		degreeLabel: false,
 		showIndoorTemperature: false,
@@ -34,7 +33,7 @@ Module.register("currentweather",{
 		retryDelay: 2500,
 
 		apiVersion: "2.5",
-		apiBase: "https://api.openweathermap.org/data/",
+		apiBase: "http://api.openweathermap.org/data/",
 		weatherEndpoint: "weather",
 
 		appendLocationNameToHeader: true,
@@ -210,13 +209,9 @@ Module.register("currentweather",{
 			}
 		}
 
-		if (this.config.decimalSymbol === "") {
-			this.config.decimalSymbol = ".";
-		}
-
 		var temperature = document.createElement("span");
 		temperature.className = "bright";
-		temperature.innerHTML = " " + this.temperature.replace(".", this.config.decimalSymbol) + "&deg;" + degreeLabel;
+		temperature.innerHTML = " " + this.temperature + "&deg;" + degreeLabel;
 		large.appendChild(temperature);
 
 		if (this.config.showIndoorTemperature && this.indoorTemperature) {
@@ -226,7 +221,7 @@ Module.register("currentweather",{
 
 			var indoorTemperatureElem = document.createElement("span");
 			indoorTemperatureElem.className = "bright";
-			indoorTemperatureElem.innerHTML = " " + this.indoorTemperature.replace(".", this.config.decimalSymbol) + "&deg;" + degreeLabel;
+			indoorTemperatureElem.innerHTML = " " + this.indoorTemperature + "&deg;" + degreeLabel;
 			large.appendChild(indoorTemperatureElem);
 		}
 
